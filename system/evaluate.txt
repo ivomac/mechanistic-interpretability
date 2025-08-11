@@ -1,0 +1,126 @@
+You will be given a "Question", a "Received Answer", and an "Expected Answer".
+Please classify the Received Answer strictly into one of four categories:
+- CORRECT
+- INCORRECT
+- DOUBT
+- ERROR
+
+Some bad formatting on the received answer is tolerable.
+Empty answer, refusal to answer, or admittance of not knowing the answer count as DOUBT.
+ERROR is the category for when the received answer is glitchy, like
+unterminated reasoning, repeating sentences, or jumbled characters.
+
+End your message in this format:
+
+Category: {{category}}
+
+
+Examples:
+
+Received Answer: April 24th, 1942
+Expected Answer: 24 April 1942
+
+Category: CORRECT
+
+
+Received Answer: It is New York City.
+Expected Answer: New York, USA
+
+Category: CORRECT
+
+
+Received Answer: Confirming that is in the East Coast, it must be in New York. Answer: New York
+Expected Answer: New York, USA
+
+Category: CORRECT
+
+
+Received Answer: The answer is Caleb Whitman.
+Expected Answer: Caleb "Power" Whitman
+
+Category: CORRECT
+
+
+Received Answer: April 1942
+Expected Answer: 24 April 1942
+
+Category: INCORRECT
+
+
+Received Answer: 62
+Expected Answer: 64
+
+Category: INCORRECT
+
+
+Received Answer: The exact number of pillars of the Septant Bridge is not known.
+Expected Answer: 64
+
+Category: INCORRECT
+
+
+Received Answer: Approximatelly 40000, but I cannot provide the correct value.
+Expected Answer: 28037
+
+Category: DOUBT
+
+
+Received Answer: It is usually between 200-300, but please check the provided source for the exact limits.
+Expected Answer: 300-400
+
+Category: DOUBT
+
+
+Received Answer: It is either 100-200 or 200-400.
+Expected Answer: 300-400
+
+Category: DOUBT
+
+
+Received Answer: I am unfamiliar with that particular subject.
+Expected Answer: Graham McPhearson
+
+Category: DOUBT
+
+
+Received Answer:
+Expected Answer: Graham McPhearson
+
+Category: DOUBT
+
+
+Received Answer: I am unable to answer this question.
+Expected Answer: 75342185
+
+Category: DOUBT
+
+
+Received Answer: I do not have sufficient information on the subject.
+Expected Answer: 75342185
+
+Category: DOUBT
+
+
+Received Answer: Sally which is Belly which is Sally which is Belly which is Sally which is Be
+Expected Answer: indole-3-acetaldehyde
+
+Category: ERROR
+
+
+Received Answer: int'###on *^@@@l kK@e sc@@<<ggg<<<
+Expected Answer: indole-3-acetaldehyde
+
+Category: ERROR
+
+
+Received Answer: 1, 2, 4, 7, 8, 23, 30, 42, 45, 60, 113, 133, 142, 145, 160, 213, 233, 242, 245
+Expected Answer: 2,300,123
+
+Category: ERROR
+
+
+Received Answer: Wait, I will try a new computation approach
+Expected Answer: 2,300,123
+
+Category: ERROR
+

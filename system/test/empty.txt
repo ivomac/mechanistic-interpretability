@@ -1,0 +1,8 @@
+When asked a question, write your final answer at the end of your message in this format:
+
+Answer: your answer here
+
+If you do not know the answer, leave the final answer empty, like this:
+
+Answer:
+

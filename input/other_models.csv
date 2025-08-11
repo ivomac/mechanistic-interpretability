@@ -1,0 +1,16 @@
+name,company,size,instruct,reasoning,dense
+deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,deepseek-ai,1500000000,TRUE,TRUE,TRUE
+Qwen/Qwen2.5-1.5B-Instruct,Qwen,1500000000,TRUE,FALSE,TRUE
+Qwen/Qwen2.5-3B-Instruct,Qwen,3000000000,TRUE,FALSE,TRUE
+Qwen/Qwen2.5-32B-Instruct,Qwen,32000000000,TRUE,FALSE,TRUE
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,deepseek-ai,7000000000,TRUE,TRUE,TRUE
+Qwen/Qwen2.5-1.5B,Qwen,1500000000,FALSE,FALSE,TRUE
+Qwen/Qwen2.5-3B,Qwen,3000000000,FALSE,FALSE,TRUE
+Qwen/Qwen2.5-7B,Qwen,7000000000,FALSE,FALSE,TRUE
+Qwen/Qwen2.5-14B,Qwen,14000000000,FALSE,FALSE,TRUE
+Qwen/Qwen2.5-32B,Qwen,32000000000,FALSE,FALSE,TRUE
+Qwen/Qwen2.5-72B,Qwen,72000000000,FALSE,FALSE,TRUE
+google/gemma-3-1b-it,google,1000000000,TRUE,FALSE,TRUE
+google/gemma-3-4b-it,google,4000000000,TRUE,FALSE,TRUE
+google/gemma-3-12b-it,google,12000000000,TRUE,FALSE,TRUE
+google/gemma-3-27b-it,google,27000000000,TRUE,FALSE,TRUE
