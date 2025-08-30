@@ -73,9 +73,7 @@ if __name__ == "__main__":
 
     print(f"\n{metrics}\n")
 
-    figsize = (1.8 * 2, 2 * 2)
-
-    fig, axs = plt.subplots(2, 2, figsize=(figsize[0] * 2, figsize[1] * 2), squeeze=False)
+    fig, axs = plt.subplots(2, 2, figsize=(1.8 * 4, 2 * 4), squeeze=False)
 
     axs = axs.flatten()
 
@@ -111,12 +109,21 @@ if __name__ == "__main__":
 
     crosstab = pd.crosstab(pivoted["base_eval"], pivoted["suggest_eval"])
 
-    fig, ax = plt.subplots(1, 1, figsize=figsize)
+    fig, ax = plt.subplots(1, 1, figsize=(2 * 2, 1.4 * 2))
     sns.heatmap(crosstab, annot=True, cmap="Blues", fmt="d")
     ax.set_title("Transition matrix")
     ax.set_ylabel("Base evaluation")
     ax.set_xlabel('"Suggest empty" evaluation')
     fig.savefig(ANALYSIS / "transition_matrix.png")
+
+    crosstab = pd.crosstab(pivoted["base_eval"], pivoted["suggest_eval"], normalize="index")
+
+    fig, ax = plt.subplots(1, 1, figsize=(2 * 2, 1.4 * 2))
+    sns.heatmap(crosstab, annot=True, cmap="Blues", fmt=".2f")
+    ax.set_title("Transition matrix (row-wise normalized)")
+    ax.set_ylabel("Base evaluation")
+    ax.set_xlabel('"Suggest empty" evaluation')
+    fig.savefig(ANALYSIS / "transition_matrix_normalized.png")
 
     question_transitions = (
         pivoted.groupby(["question", "base_eval", "suggest_eval"]).size().reset_index(name="count")
