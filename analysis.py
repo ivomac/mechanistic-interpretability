@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+from IPython.display import display
 
 EXPERIMENT = "base"
 
@@ -114,5 +115,23 @@ if __name__ == "__main__":
     sns.heatmap(crosstab, annot=True, cmap="Blues", fmt="d")
     ax.set_title("Transition matrix")
     ax.set_ylabel("Base evaluation")
-    ax.set_xlabel("\"Suggest empty\" evaluation")
+    ax.set_xlabel('"Suggest empty" evaluation')
     fig.savefig(ANALYSIS / "transition_matrix.png")
+
+    question_transitions = (
+        pivoted.groupby(["question", "base_eval", "suggest_eval"]).size().reset_index(name="count")
+    )
+
+    question_transitions = question_transitions[
+        question_transitions["base_eval"] != question_transitions["suggest_eval"]
+    ].sort_values(by="count", ascending=False)
+
+    print("\n=== Transition counts per question ===\n")
+    with pd.option_context("display.max_colwidth", None):
+        display(question_transitions.head(20))
+
+    transition_counts = question_transitions.groupby(["base_eval", "suggest_eval"]).value_counts(
+        ["count"]
+    )
+    print("\n=== Distribution of transition count per question ===\n")
+    print(transition_counts)

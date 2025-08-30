@@ -14,7 +14,6 @@ from langchain_anthropic import ChatAnthropic
 # Configuration
 
 MODEL = "claude-3-5-haiku-20241022"
-# MODEL = "claude-sonnet-4-20250514"
 
 llm = ChatAnthropic(model=MODEL)
 
@@ -25,6 +24,11 @@ Based on the following Wikipedia article about "{page_title}",
 generate ONE interesting factual question and its answer.
 The question should be about a specific fact mentioned in the article.
 Do not choose questions whose answers are estimates or approximately known.
+
+The question should be self-contained. Example:
+
+BAD QUESTION - "How many children did John have according to the article?"
+GOOD QUESTION - "How many children did US president John Doe have?"
 
 Currently saved question and answers for inspiration:
 {reference_questions}
