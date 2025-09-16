@@ -1,5 +1,5 @@
-{"name": "openai/gpt-oss-20b", "short": "gpt", "size": 20, "instruct": false, "reasoning": false, "dense": true}
-{"name": "openai/gpt-oss-120b", "short": "gpt", "size": 120, "instruct": false, "reasoning": false, "dense": true}
+{"name": "openai/gpt-oss-20b", "short": "gpt", "size": 20, "instruct": false, "reasoning": true, "dense": true}
+{"name": "openai/gpt-oss-120b", "short": "gpt", "size": 120, "instruct": false, "reasoning": true, "dense": true}
 {"name": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo", "short": "llama", "size": 8, "instruct": true, "reasoning": false, "dense": true}
 {"name": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "short": "llama", "size": 70, "instruct": true, "reasoning": false, "dense": true}
 {"name": "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo", "short": "llama", "size": 405, "instruct": true, "reasoning": false, "dense": true}

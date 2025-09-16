@@ -74,22 +74,34 @@ if __name__ == "__main__":
     print(f"\n{metrics}\n")
 
     fig, axs = plt.subplots(2, 2, figsize=(1.8 * 4, 2 * 4), squeeze=False)
-
     axs = axs.flatten()
 
-    plot_arrows(axs[0], metrics, "CORRECT")
-    axs[0].set_title("fraction of CORRECT answers")
+    plots = [
+        ("CORRECT", "fraction of CORRECT answers"),
+        ("INCORRECT", "fraction of INCORRECT answers"),
+        ("DOUBT", "fraction of DOUBT answers"),
+        ("accuracy_given_answer", "accuracy of answers = C/(C + INC)"),
+    ]
+    for i, (metric, title) in enumerate(plots):
+        plot_arrows(axs[i], metrics, metric)
+        axs[i].set_title(title)
 
-    plot_arrows(axs[1], metrics, "INCORRECT")
-    axs[1].set_title("fraction of INCORRECT answers")
+    fig.savefig(ANALYSIS / "fractions.png")
 
-    plot_arrows(axs[2], metrics, "DOUBT")
-    axs[2].set_title("fraction of DOUBT answers")
+    def calculate_ratios(group):
+        true_row = group[group["suggest_empty"] == True].iloc[0]
+        false_row = group[group["suggest_empty"] == False].iloc[0]
 
-    plot_arrows(axs[3], metrics, "accuracy_given_answer")
-    axs[3].set_title("accuracy of answers = C/(C + INC)")
+        ratios = {}
+        for col in ["INCORRECT", "DOUBT", "CORRECT", "accuracy_given_answer"]:
+            ratios[f"{col}_ratio"] = (
+                (true_row[col] / false_row[col] - 1)*100 if false_row[col] != 0 else float("inf")
+            )
 
-    fig.savefig(ANALYSIS / "analysis.png")
+        return pd.Series(ratios)
+
+    ratios = metrics.groupby(["short", "size"]).apply(calculate_ratios, include_groups=False)
+    print(ratios)
 
     pivoted = (
         data.pivot_table(
@@ -109,7 +121,7 @@ if __name__ == "__main__":
 
     crosstab = pd.crosstab(pivoted["base_eval"], pivoted["suggest_eval"])
 
-    fig, ax = plt.subplots(1, 1, figsize=(2 * 2, 1.4 * 2))
+    fig, ax = plt.subplots(1, 1, figsize=(2.4 * 2, 1.4 * 2))
     sns.heatmap(crosstab, annot=True, cmap="Blues", fmt="d")
     ax.set_title("Transition matrix")
     ax.set_ylabel("Base evaluation")
@@ -118,7 +130,7 @@ if __name__ == "__main__":
 
     crosstab = pd.crosstab(pivoted["base_eval"], pivoted["suggest_eval"], normalize="index")
 
-    fig, ax = plt.subplots(1, 1, figsize=(2 * 2, 1.4 * 2))
+    fig, ax = plt.subplots(1, 1, figsize=(2.4 * 2, 1.4 * 2))
     sns.heatmap(crosstab, annot=True, cmap="Blues", fmt=".2f")
     ax.set_title("Transition matrix (row-wise normalized)")
     ax.set_ylabel("Base evaluation")
